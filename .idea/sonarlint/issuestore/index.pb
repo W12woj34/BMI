@@ -1,0 +1,21 @@
+
+P
+ app/src/main/AndroidManifest.xml,8\c\8c55c3ccc257e5907959013f99656e4c8ec3903e
+d
+4app/src/main/java/com/example/bmi/AboutMeActivity.kt,f\b\fbaff2baa3f9b391b9c77251d344ac0b63d006cf
+a
+1app/src/main/java/com/example/bmi/MainActivity.kt,e\f\ef8c94dc351bd5f8868d46fffe93c66a0e99e51d
+d
+4app/src/main/java/com/example/bmi/InfoBmiActivity.kt,9\e\9ecb681cdd4da62230dcd2f9b9d49995ee5e1d28
+s
+Capp/src/androidTest/java/com/example/bmi/ExampleInstrumentedTest.kt,9\2\927a2a2cad3b3b206aadf50ac200048078d5eadd
+e
+5app/src/main/java/com/example/bmi/logic/BmiForKgCm.kt,6\4\6468dae201ee632d8aad4ab33f8820f2575c6767
+e
+5app/src/main/java/com/example/bmi/logic/BmiForLbIn.kt,d\4\d426134fb77732d456b872058edc08bfc7d7fc33
+m
+=app/src/androidTest/java/com/example/bmi/MainActivityTest2.kt,b\7\b72a2ce02d1b0d0f8c8da41b67ec81f1d32df62e
+l
+<app/src/androidTest/java/com/example/bmi/MainActivityTest.kt,2\2\2286dc201c5adc0b2f0009ab171d312e4710541a
+d
+4app/src/test/java/com/example/bmi/ExampleUnitTest.kt,2\3\235cf683f9fd91f0cc3618b582c44b8a1a5a3ec7

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".AboutMeActivity"
+        android:orientation="vertical"
+        android:layout_marginBottom="@dimen/BMI_MARGIN_BOTTOM"
+        android:layout_marginEnd="@dimen/BMI_MARGIN_END"
+        android:layout_marginStart="@dimen/BMI_MARGIN_START"
+        android:layout_marginTop="@dimen/BMI_MARGIN_TOP">
+    <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:srcCompat="@drawable/meme"
+            android:id="@+id/imageView2"
+            app:srcCompat="@drawable/meme"
+            android:layout_weight="20"
+            android:contentDescription="@string/BI_ABOUT_TOP_IMAGE"/>
+    <Space
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/BMI_SPACE_HEIGHT"/>
+    <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:id="@+id/infoText1" android:layout_weight="60"
+            android:text="@string/BMI_ABOUT_TOP"/>
+    <Space
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/BMI_SPACE_HEIGHT"/>
+    <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:srcCompat="@drawable/bmikebab"
+            android:id="@+id/imageView3"
+            app:srcCompat="@drawable/bmikebab"
+            android:layout_weight="20"
+            android:contentDescription="@string/BMI_ABOUT_ME_BOTTOM"/>
+    <Space
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/BMI_SPACE_HEIGHT"/>
+    <TextView
+            android:text="@string/BMI_ABOUT_DOWN"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView2"
+            android:layout_weight="20"
+            android:textAlignment="center"
+            android:textSize="18sp"/>
+    <Space
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/BMI_SPACE_HEIGHT"/>
+</LinearLayout>
