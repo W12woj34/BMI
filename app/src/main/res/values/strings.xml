@@ -30,7 +30,7 @@
     <string name="BMI_INFO_BUTTON_DESC">Info button</string>
     <string name="BMI_INFO_PIC">Bmi info pic</string>
     <string name="BMI_ABOUT_ME_BOTTOM">About me down image</string>
-    <string name="BI_ABOUT_TOP_IMAGE">Abaut me top image</string>
+    <string name="BI_ABOUT_TOP_IMAGE">About me top image</string>
     <string name="BMI_RESULT_TEXT">result</string>
     <string name="BMI_BUTTON_COUNT">Count</string>
     <string name="BMI_SHOW_INFO_DESC">Bmi show info</string>

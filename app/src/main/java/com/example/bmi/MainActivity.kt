@@ -78,18 +78,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun countBmiButton(){
-        var error = false
-        if(massEdit.text.isEmpty() || massEdit.text.length > 3 || massEdit.text.toString().toInt() == 0){
-            massEdit.error = getString(R.string.BMI_MASS_ERROR)
-            error = true
-        }
 
-        if(heightEdit.text.isEmpty() || heightEdit.text.length > 3 || heightEdit.text.toString().toInt() == 0){
-            heightEdit.error = getString(R.string.BMI_HEIGHT_ERROR)
-            error = true
-        }
-
-        if(!error){
+        if(!checkIfEmpty()){
             val bmi : Bmi
             val mass = massEdit.text.toString().toInt()
             val height = heightEdit.text.toString().toInt()
@@ -98,14 +88,44 @@ class MainActivity : AppCompatActivity() {
             }else{
                 bmi = BmiForLbIn(mass, height)
             }
+            when {
+                bmi.countBmi() == -1.0 -> {
+                    massEdit.error = getString(R.string.BMI_MASS_ERROR)
+                    return
+                }
+                bmi.countBmi() == -2.0 -> {
+                    heightEdit.error = getString(R.string.BMI_HEIGHT_ERROR)
+                    return
+                }
+                bmi.countBmi() == -3.0 -> {
+                    massEdit.error = getString(R.string.BMI_MASS_ERROR)
+                    heightEdit.error = getString(R.string.BMI_HEIGHT_ERROR)
+                    return
+                }
+                else -> {
+                    this.bmiNumberView.text = (((bmi.countBmi()*100).toInt())/100.0).toString()
+                    this.bmiNumberView.setTextColor(ContextCompat.getColor(this, bmiClassification(bmi.countBmi()).second))
+                    this.bmiDescriptionView.text = bmiClassification(bmi.countBmi()).first
+                    this.showInfo.visibility = View.VISIBLE
+                    this.showInfo.setBackgroundColor(bmiNumberView.currentTextColor)
+                }
+            }
+        }
+    }
 
-            this.bmiNumberView.text = (((bmi.countBmi()*100).toInt())/100.0).toString()
-            this.bmiNumberView.setTextColor(ContextCompat.getColor(this, bmiClassification(bmi.countBmi()).second))
-            this.bmiDescriptionView.text = bmiClassification(bmi.countBmi()).first
-            this.showInfo.visibility = View.VISIBLE
-            this.showInfo.setBackgroundColor(bmiNumberView.currentTextColor)
+    private fun checkIfEmpty(): Boolean{
+        var error = false
+        if(massEdit.text.isEmpty()){
+            massEdit.error = getString(R.string.BMI_MASS_ERROR)
+            error = true
         }
 
+        if(heightEdit.text.isEmpty()){
+            heightEdit.error = getString(R.string.BMI_HEIGHT_ERROR)
+            error = true
+        }
+
+        return error
     }
 
     private fun showInfoButton(){
