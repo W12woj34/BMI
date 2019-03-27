@@ -1,15 +1,7 @@
 <resources>
     <string name="app_name">BMI</string>
-    <string name="BMI_NUMBER">BMI_NUMBER</string>
-    <string name="BMI_MASS">BMI_MASS</string>
-    <string name="BMI_HEIGHT">BMI_HEIGHT</string>
-    <string name="BMI_UNITS">BMI_UNITS</string>
     <string name="BMI_MASS_ERROR">Give correct mass!</string>
     <string name="BMI_HEIGHT_ERROR">Give correct height!</string>
-    <string name="BMI_VALUE">BMI_VALUE</string>
-    <string name="BMI_NAME">BMI_NAME</string>
-    <string name="BMI_COLOR">BMI_COLOR</string>
-    <string name="BMI_DESCRIPTION">BMI_DESCRIPTION</string>
     <string name="BMI_MASS_KG">mass [kg]</string>
     <string name="BMI_HEIGHT_CM">height [cm]</string>
     <string name="BMI_MASS_LB">mass [lb]</string>
@@ -32,7 +24,7 @@
     <string name="BMI_OBESE1_INFO">Obese class I, you should go on a diet.</string>
     <string name="BMI_OBESE2_INFO">Obese class II, your health may not be as good as you want.</string>
     <string name="BMI_OBESE3_INFO">Obese class III, if you want to be healthy, you have to do something.</string>
-    <string name="BMI_ABOUT_DOWN">Kebab is love kebab is live</string>
+    <string name="BMI_ABOUT_DOWN">Kebab is love kebab is life</string>
     <string name="BMI_ABOUT_TOP">(ง ͠° ͟ل͜ ͡°)ง (╯ ͠° ͟ʖ ͡°)╯</string>
     <string name="BMI_MAIN_PIC_DESC">Main picture</string>
     <string name="BMI_INFO_BUTTON_DESC">Info button</string>

@@ -12,12 +12,19 @@ class InfoBmiActivity : AppCompatActivity() {
 
         val bundle = this.intent.extras
         if(bundle != null){
-            bmiValue.text = bundle.getString(getString(R.string.BMI_VALUE))
-            bmiValue.setTextColor(bundle.getInt(getString(R.string.BMI_COLOR)))
-            bmiClass.text = bundle.getString(getString(R.string.BMI_NAME))
-            bmiClass.setTextColor(bundle.getInt(getString(R.string.BMI_COLOR)))
-            bmiDescriptionLong.text = bundle.getString(getString(R.string.BMI_DESCRIPTION))
+            bmiValue.text = bundle.getString(KEY_BMI_VALUE)
+            bmiValue.setTextColor(bundle.getInt(KEY_BMI_COLOR))
+            bmiClass.text = bundle.getString(KEY_BMI_NAME)
+            bmiClass.setTextColor(bundle.getInt(KEY_BMI_COLOR))
+            bmiDescriptionLong.text = bundle.getString(KEY_BMI_DESCRIPTION)
         }
 
+    }
+
+    companion object {
+        const val KEY_BMI_COLOR = "BMI_COLOR"
+        const val KEY_BMI_VALUE = "BMI_VALUE"
+        const val KEY_BMI_NAME = "BMI_NAME"
+        const val KEY_BMI_DESCRIPTION = "BMI_DESCRIPTION"
     }
 }

@@ -53,26 +53,26 @@ class MainActivity : AppCompatActivity() {
 
     override fun onSaveInstanceState(outState: Bundle?) {
         super.onSaveInstanceState(outState)
-        outState?.putString(getString(R.string.BMI_NUMBER), bmiNumberView.text.toString())
-        outState?.putString(getString(R.string.BMI_DESCRIPTION), bmiDescriptionView.text.toString())
-        outState?.putInt(getString(R.string.BMI_COLOR), bmiNumberView.currentTextColor)
-        outState?.putString(getString(R.string.BMI_MASS), massText.text.toString())
-        outState?.putString(getString(R.string.BMI_HEIGHT), heightText.text.toString())
-        outState?.putBoolean(getString(R.string.BMI_UNITS), units)
-        outState?.putInt(getString(R.string.BMI_VISIBILITY), showInfo.visibility)
+        outState?.putString(KEY_BMI_VALUE, bmiNumberView.text.toString())
+        outState?.putString(KEY_BMI_DESCRIPTION, bmiDescriptionView.text.toString())
+        outState?.putInt(KEY_BMI_COLOR, bmiNumberView.currentTextColor)
+        outState?.putString(KEY_BMI_MASS, massText.text.toString())
+        outState?.putString(KEY_BMI_HEIGHT, heightText.text.toString())
+        outState?.putBoolean(KEY_BMI_UNITS, units)
+        outState?.putInt(KEY_BMI_VISIBILITY, showInfo.visibility)
     }
 
     override fun onRestoreInstanceState(savedInstanceState: Bundle?) {
         super.onRestoreInstanceState(savedInstanceState)
         if(savedInstanceState != null){
-            bmiNumberView.text = savedInstanceState.getString(getString(R.string.BMI_NUMBER))
-            bmiNumberView.setTextColor(savedInstanceState.getInt(getString(R.string.BMI_COLOR)))
-            bmiDescriptionView.text = savedInstanceState.getString(getString(R.string.BMI_DESCRIPTION))
-            massText.text = savedInstanceState.getString(getString(R.string.BMI_MASS))
-            heightText.text = savedInstanceState.getString(getString(R.string.BMI_HEIGHT))
-            units = savedInstanceState.getBoolean(getString(R.string.BMI_UNITS))
-            showInfo.visibility = savedInstanceState.getInt(getString(R.string.BMI_VISIBILITY))
-            showInfo.setBackgroundColor(savedInstanceState.getInt(getString(R.string.BMI_COLOR)))
+            bmiNumberView.text = savedInstanceState.getString(KEY_BMI_VALUE)
+            bmiNumberView.setTextColor(savedInstanceState.getInt(KEY_BMI_COLOR))
+            bmiDescriptionView.text = savedInstanceState.getString(KEY_BMI_DESCRIPTION)
+            massText.text = savedInstanceState.getString(KEY_BMI_MASS)
+            heightText.text = savedInstanceState.getString(KEY_BMI_HEIGHT)
+            units = savedInstanceState.getBoolean(KEY_BMI_UNITS)
+            showInfo.visibility = savedInstanceState.getInt(KEY_BMI_VISIBILITY)
+            showInfo.setBackgroundColor(savedInstanceState.getInt(KEY_BMI_COLOR))
         }
 
     }
@@ -98,6 +98,7 @@ class MainActivity : AppCompatActivity() {
             }else{
                 bmi = BmiForLbIn(mass, height)
             }
+
             this.bmiNumberView.text = (((bmi.countBmi()*100).toInt())/100.0).toString()
             this.bmiNumberView.setTextColor(ContextCompat.getColor(this, bmiClassification(bmi.countBmi()).second))
             this.bmiDescriptionView.text = bmiClassification(bmi.countBmi()).first
@@ -110,10 +111,10 @@ class MainActivity : AppCompatActivity() {
     private fun showInfoButton(){
         if(bmiNumberView.text != ""){
             val dataIntent = Intent(this, InfoBmiActivity::class.java)
-            dataIntent.putExtra(getString(R.string.BMI_VALUE), bmiNumberView.text.toString())
-            dataIntent.putExtra(getString(R.string.BMI_NAME), bmiDescriptionView.text.toString())
-            dataIntent.putExtra(getString(R.string.BMI_COLOR), bmiNumberView.currentTextColor)
-            dataIntent.putExtra(getString(R.string.BMI_DESCRIPTION), chooseDescription(bmiDescriptionView.text.toString()))
+            dataIntent.putExtra(KEY_BMI_VALUE, bmiNumberView.text.toString())
+            dataIntent.putExtra(KEY_BMI_NAME, bmiDescriptionView.text.toString())
+            dataIntent.putExtra(KEY_BMI_COLOR, bmiNumberView.currentTextColor)
+            dataIntent.putExtra(KEY_BMI_DESCRIPTION, chooseDescription(bmiDescriptionView.text.toString()))
             startActivity(dataIntent)
         }
     }
@@ -170,4 +171,15 @@ class MainActivity : AppCompatActivity() {
         return Pair(getString(R.string.BMI_ERROR), R.color.colorBlack)
     }
 
+
+    companion object {
+        const val KEY_BMI_COLOR = "BMI_COLOR"
+        const val KEY_BMI_VALUE = "BMI_VALUE"
+        const val KEY_BMI_NAME = "BMI_NAME"
+        const val KEY_BMI_DESCRIPTION = "BMI_DESCRIPTION"
+        const val KEY_BMI_VISIBILITY = "BMI_VISIBILITY"
+        const val KEY_BMI_UNITS = "BMI_UNITS"
+        const val KEY_BMI_MASS = "BMI_MASS"
+        const val KEY_BMI_HEIGHT = "BMI_HEIGHT"
+    }
 }
