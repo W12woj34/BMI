@@ -127,20 +127,22 @@
             android:layout_width="@dimen/BMI_WIDTH_MATCH"
             android:layout_height="wrap_content"
             android:id="@+id/bmiDescriptionView"
-            app:layout_constraintStart_toStartOf="parent" android:layout_marginTop="12dp"
-            app:layout_constraintTop_toBottomOf="@+id/bmiNumberView" android:layout_marginStart="8dp"
-            android:textSize="26sp" android:layout_marginBottom="10dp"
+            app:layout_constraintStart_toStartOf="parent" android:layout_marginTop="@dimen/BMI_MARGIN_TOP"
+            app:layout_constraintTop_toBottomOf="@+id/bmiNumberView" android:layout_marginStart="@dimen/BMI_MARGIN_START"
+            android:textSize="26sp" android:layout_marginBottom="@dimen/BMI_MARGIN_BOTTOM"
             app:layout_constraintBottom_toTopOf="@+id/countBmi" app:layout_constraintHorizontal_bias="0.501"
-            app:layout_constraintVertical_bias="0.163" android:textAlignment="center" android:layout_marginEnd="8dp"
+            app:layout_constraintVertical_bias="0.163"
+            android:textAlignment="center"
+            android:layout_marginEnd="@dimen/BMI_MARGIN_END"
             app:layout_constraintEnd_toEndOf="parent"/>
     <ImageButton
             app:srcCompat="@drawable/ic_media_play_light"
             android:id="@+id/showInfo"
-            android:layout_width="@dimen/BMI_WIDTH_MATCH" android:layout_marginTop="@dimen/BMI_MARGIN_TOP"
+            android:layout_width="0dp" android:layout_marginTop="@dimen/BMI_MARGIN_TOP"
             app:layout_constraintTop_toBottomOf="@+id/textView4" android:layout_marginBottom="@dimen/BMI_MARGIN_BOTTOM"
             app:layout_constraintBottom_toTopOf="@+id/bmiDescriptionView" app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginEnd="@dimen/BMI_MARGIN_END" tools:srcCompat="@drawable/ic_media_play_light"
-            android:layout_height="wrap_content" app:layout_constraintVertical_bias="1.0"
-            android:visibility="visible"
-            android:contentDescription="@string/BMI_INFO_BUTTON_DESC"/>
+            app:layout_constraintVertical_bias="1.0"
+            android:visibility="invisible"
+            android:contentDescription="@string/BMI_INFO_BUTTON_DESC" android:layout_height="wrap_content"/>
 </android.support.constraint.ConstraintLayout>

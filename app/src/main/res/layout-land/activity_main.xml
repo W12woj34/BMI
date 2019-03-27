@@ -57,8 +57,9 @@
             app:srcCompat="@drawable/run"
             android:layout_marginBottom="@dimen/BMI_MARGIN_BOTTOM"
             app:layout_constraintBottom_toTopOf="@+id/guideline"
-            app:layout_constraintVertical_bias="0.0"
-            android:layout_width="0dp" android:contentDescription="@string/BMI_INFO_PIC"/>
+            app:layout_constraintVertical_bias="1.0"
+            android:layout_width="0dp" android:contentDescription="@string/BMI_INFO_PIC"
+            app:layout_constraintHorizontal_bias="1.0"/>
     <android.support.constraint.Guideline
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -141,10 +142,8 @@
             app:layout_constraintGuide_percent="0.5"/>
     <ImageButton
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             app:srcCompat="@drawable/ic_media_play_light"
-            android:layout_marginEnd="@dimen/BMI_MARGIN_END"
-            app:layout_constraintEnd_toEndOf="parent"
             android:id="@+id/showInfo"
             android:layout_marginTop="@dimen/BMI_MARGIN_TOP"
             app:layout_constraintTop_toBottomOf="@+id/textView4"
@@ -152,6 +151,8 @@
             app:layout_constraintBottom_toTopOf="@+id/bmiDescriptionView"
             tools:srcCompat="@drawable/ic_media_play_light"
             app:layout_constraintVertical_bias="1.0"
-            android:visibility="gone"
-            android:contentDescription="@string/BMI_SHOW_INFO_DESC"/>
+            android:visibility="invisible"
+            android:contentDescription="@string/BMI_SHOW_INFO_DESC"
+            android:cropToPadding="false" android:duplicateParentState="false"
+            app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="@dimen/BMI_MARGIN_END"/>
 </android.support.constraint.ConstraintLayout>

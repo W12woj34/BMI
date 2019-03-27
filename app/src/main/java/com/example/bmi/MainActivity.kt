@@ -1,7 +1,6 @@
 package com.example.bmi
 
 import android.content.Intent
-import android.graphics.ColorFilter
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v4.content.ContextCompat
@@ -156,7 +155,7 @@ class MainActivity : AppCompatActivity() {
         bmiDescriptionView.text = getString(R.string.BMI_BLANK)
         massEdit.text = null
         heightEdit.text = null
-        showInfo.visibility = View.GONE
+        showInfo.visibility = View.INVISIBLE
         Toast.makeText(this,getString(R.string.BMI_SWITCH_COM), Toast.LENGTH_LONG).show()
     }
 
