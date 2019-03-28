@@ -138,11 +138,16 @@
     <ImageButton
             app:srcCompat="@drawable/ic_media_play_light"
             android:id="@+id/showInfo"
-            android:layout_width="0dp" android:layout_marginTop="@dimen/BMI_MARGIN_TOP"
-            app:layout_constraintTop_toBottomOf="@+id/textView4" android:layout_marginBottom="@dimen/BMI_MARGIN_BOTTOM"
-            app:layout_constraintBottom_toTopOf="@+id/bmiDescriptionView" app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginEnd="@dimen/BMI_MARGIN_END" tools:srcCompat="@drawable/ic_media_play_light"
+            android:layout_width="0dp"
+            android:layout_marginTop="@dimen/BMI_MARGIN_TOP"
+            app:layout_constraintTop_toBottomOf="@+id/textView4"
+            android:layout_marginBottom="@dimen/BMI_MARGIN_BOTTOM"
+            app:layout_constraintBottom_toTopOf="@+id/bmiDescriptionView"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="@dimen/BMI_MARGIN_END"
+            tools:srcCompat="@drawable/ic_media_play_light"
             app:layout_constraintVertical_bias="1.0"
             android:visibility="invisible"
-            android:contentDescription="@string/BMI_INFO_BUTTON_DESC" android:layout_height="wrap_content"/>
+            android:contentDescription="@string/BMI_INFO_BUTTON_DESC"
+            android:layout_height="wrap_content"/>
 </android.support.constraint.ConstraintLayout>

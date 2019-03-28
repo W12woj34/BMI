@@ -88,40 +88,44 @@ class MainActivity : AppCompatActivity() {
             }else{
                 bmi = BmiForLbIn(mass, height)
             }
+
             when {
-                bmi.countBmi() == -1.0 -> {
-                    massEdit.error = getString(R.string.BMI_MASS_ERROR)
-                    return
+                (bmi.getMass() !in bmi.getMassRange()) && (bmi.getHeight() !in bmi.getHeightRange()) -> {
+                    showMassError()
+                    showHeightError()
                 }
-                bmi.countBmi() == -2.0 -> {
-                    heightEdit.error = getString(R.string.BMI_HEIGHT_ERROR)
-                    return
-                }
-                bmi.countBmi() == -3.0 -> {
-                    massEdit.error = getString(R.string.BMI_MASS_ERROR)
-                    heightEdit.error = getString(R.string.BMI_HEIGHT_ERROR)
-                    return
-                }
+                bmi.getMass() !in bmi.getMassRange() -> showMassError()
+                bmi.getHeight() !in bmi.getHeightRange() -> showHeightError()
                 else -> {
                     this.bmiNumberView.text = (((bmi.countBmi()*100).toInt())/100.0).toString()
                     this.bmiNumberView.setTextColor(ContextCompat.getColor(this, bmiClassification(bmi.countBmi()).second))
                     this.bmiDescriptionView.text = bmiClassification(bmi.countBmi()).first
-                    this.showInfo.visibility = View.VISIBLE
                     this.showInfo.setBackgroundColor(bmiNumberView.currentTextColor)
+                    this.showInfo.visibility = View.VISIBLE
                 }
             }
+
+
         }
+    }
+
+    private fun showMassError(){
+        massEdit.error = getString(R.string.BMI_MASS_ERROR)
+    }
+
+    private fun showHeightError(){
+        heightEdit.error = getString(R.string.BMI_HEIGHT_ERROR)
     }
 
     private fun checkIfEmpty(): Boolean{
         var error = false
         if(massEdit.text.isEmpty()){
-            massEdit.error = getString(R.string.BMI_MASS_ERROR)
+            showMassError()
             error = true
         }
 
         if(heightEdit.text.isEmpty()){
-            heightEdit.error = getString(R.string.BMI_HEIGHT_ERROR)
+            showHeightError()
             error = true
         }
 
@@ -140,37 +144,29 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun chooseDescription(bmiDesc:String) : String{
-        if(bmiDesc == getString(R.string.BMI_UNDERWEIGHT)){
-            return getString(R.string.BMI_UNDERWEIGHT_INFO)
+        return when (bmiDesc) {
+            getString(R.string.BMI_UNDERWEIGHT) -> getString(R.string.BMI_UNDERWEIGHT_INFO)
+            getString(R.string.BMI_NORMAL) -> getString(R.string.BMI_NORMAL_INFO)
+            getString(R.string.BMI_OVERWEIGHT) -> getString(R.string.BMI_OVERWEIGHT_INFO)
+            getString(R.string.BMI_OBESE1) -> getString(R.string.BMI_OBESE1_INFO)
+            getString(R.string.BMI_OBESE2) -> getString(R.string.BMI_OBESE2_INFO)
+            getString(R.string.BMI_OBESE3) -> getString(R.string.BMI_OBESE3_INFO)
+            else -> getString(R.string.BMI_ERROR)
         }
-        if(bmiDesc == getString(R.string.BMI_NORMAL)){
-            return getString(R.string.BMI_NORMAL_INFO)
-        }
-        if(bmiDesc == getString(R.string.BMI_OVERWEIGHT)){
-            return getString(R.string.BMI_OVERWEIGHT_INFO)
-        }
-        if(bmiDesc == getString(R.string.BMI_OBESE1)){
-            return getString(R.string.BMI_OBESE1_INFO)
-        }
-        if(bmiDesc == getString(R.string.BMI_OBESE2)){
-            return getString(R.string.BMI_OBESE2_INFO)
-        }
-        if(bmiDesc == getString(R.string.BMI_OBESE3)){
-            return getString(R.string.BMI_OBESE3_INFO)
-        }
-        return getString(R.string.BMI_ERROR)
     }
 
     private fun switchUnits(){
         units = !units
 
-        if(!units){
-            massText.text = getString(R.string.BMI_MASS_KG)
-            heightText.text = getString(R.string.BMI_HEIGHT_CM)
-        }
-        else{
-            massText.text = getString(R.string.BMI_MASS_LB)
-            heightText.text = getString(R.string.BMI_HEIGHT_IN)
+        when {
+            !units -> {
+                massText.text = getString(R.string.BMI_MASS_KG)
+                heightText.text = getString(R.string.BMI_HEIGHT_CM)
+            }
+            else -> {
+                massText.text = getString(R.string.BMI_MASS_LB)
+                heightText.text = getString(R.string.BMI_HEIGHT_IN)
+            }
         }
         bmiNumberView.text = getString(R.string.BMI_BLANK)
         bmiDescriptionView.text = getString(R.string.BMI_BLANK)
@@ -182,13 +178,14 @@ class MainActivity : AppCompatActivity() {
 
     private fun bmiClassification(bmi: Double): Pair<String, Int> {
 
-        if(bmi < 18.5 ) return Pair(getString(R.string.BMI_UNDERWEIGHT),R.color.colorLapisLazuli)
-        if (bmi >= 18.5 && bmi < 25) return Pair(getString(R.string.BMI_NORMAL), R.color.colorVerdigris)
-        if (bmi >= 25 && bmi < 30) return Pair(getString(R.string.BMI_OVERWEIGHT), R.color.colorOrange)
-        if (bmi >= 30 && bmi < 35) return Pair(getString(R.string.BMI_OBESE1), R.color.colorPink)
-        if (bmi >= 35 && bmi < 40) return Pair(getString(R.string.BMI_OBESE2),R.color.colorPompeianPink)
-        if (bmi >= 40) return Pair(getString(R.string.BMI_OBESE3), R.color.colorClaret)
-        return Pair(getString(R.string.BMI_ERROR), R.color.colorBlack)
+        return when {
+            bmi < 18.5 -> Pair(getString(R.string.BMI_UNDERWEIGHT),R.color.colorLapisLazuli)
+            bmi in 18.5..25.0 -> Pair(getString(R.string.BMI_NORMAL), R.color.colorVerdigris)
+            bmi in 25.0..30.0 -> Pair(getString(R.string.BMI_OVERWEIGHT), R.color.colorOrange)
+            bmi in 30.0..35.0 -> Pair(getString(R.string.BMI_OBESE1), R.color.colorPink)
+            bmi in 35.0..40.0 -> Pair(getString(R.string.BMI_OBESE2),R.color.colorPompeianPink)
+            else -> Pair(getString(R.string.BMI_OBESE3), R.color.colorClaret)
+        }
     }
 
 
