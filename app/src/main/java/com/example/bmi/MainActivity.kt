@@ -3,7 +3,6 @@ package com.example.bmi
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.support.v4.content.ContextCompat
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
@@ -72,7 +71,7 @@ class MainActivity : AppCompatActivity() {
             heightText.text = savedInstanceState.getString(KEY_BMI_HEIGHT)
             units = savedInstanceState.getBoolean(KEY_BMI_UNITS)
             showInfo.visibility = savedInstanceState.getInt(KEY_BMI_VISIBILITY)
-            showInfo.setBackgroundColor(savedInstanceState.getInt(KEY_BMI_COLOR))
+           // showInfo.setBackgroundColor(savedInstanceState.getInt(KEY_BMI_COLOR))
         }
 
     }
@@ -97,10 +96,11 @@ class MainActivity : AppCompatActivity() {
                 bmi.getMass() !in bmi.getMassRange() -> showMassError()
                 bmi.getHeight() !in bmi.getHeightRange() -> showHeightError()
                 else -> {
-                    this.bmiNumberView.text = (((bmi.countBmi()*100).toInt())/100.0).toString()
-                    this.bmiNumberView.setTextColor(ContextCompat.getColor(this, bmiClassification(bmi.countBmi()).second))
-                    this.bmiDescriptionView.text = bmiClassification(bmi.countBmi()).first
-                    this.showInfo.setBackgroundColor(bmiNumberView.currentTextColor)
+                    this.bmiNumberView.text = ((bmi.countBmi()*100).toInt()/100.0).toString()
+                    val category = bmiClassification(bmi.countBmi())
+                    this.bmiNumberView.setTextColor(category.getColor(this.resources))
+                    this.bmiDescriptionView.text = category.getName(this.resources)
+                    //this.showInfo.setBackgroundColor(bmiNumberView.currentTextColor)
                     this.showInfo.visibility = View.VISIBLE
                 }
             }
@@ -133,25 +133,13 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun showInfoButton(){
-        if(bmiNumberView.text != ""){
+        if(bmiNumberView.text != getString(R.string.BMI_BLANK)){
             val dataIntent = Intent(this, InfoBmiActivity::class.java)
             dataIntent.putExtra(KEY_BMI_VALUE, bmiNumberView.text.toString())
             dataIntent.putExtra(KEY_BMI_NAME, bmiDescriptionView.text.toString())
             dataIntent.putExtra(KEY_BMI_COLOR, bmiNumberView.currentTextColor)
-            dataIntent.putExtra(KEY_BMI_DESCRIPTION, chooseDescription(bmiDescriptionView.text.toString()))
+            dataIntent.putExtra(KEY_BMI_DESCRIPTION, bmiClassification(bmiNumberView.text.toString().toDouble()).getDescription(this.resources))
             startActivity(dataIntent)
-        }
-    }
-
-    private fun chooseDescription(bmiDesc:String) : String{
-        return when (bmiDesc) {
-            getString(R.string.BMI_UNDERWEIGHT) -> getString(R.string.BMI_UNDERWEIGHT_INFO)
-            getString(R.string.BMI_NORMAL) -> getString(R.string.BMI_NORMAL_INFO)
-            getString(R.string.BMI_OVERWEIGHT) -> getString(R.string.BMI_OVERWEIGHT_INFO)
-            getString(R.string.BMI_OBESE1) -> getString(R.string.BMI_OBESE1_INFO)
-            getString(R.string.BMI_OBESE2) -> getString(R.string.BMI_OBESE2_INFO)
-            getString(R.string.BMI_OBESE3) -> getString(R.string.BMI_OBESE3_INFO)
-            else -> getString(R.string.BMI_ERROR)
         }
     }
 
@@ -176,15 +164,15 @@ class MainActivity : AppCompatActivity() {
         Toast.makeText(this,getString(R.string.BMI_SWITCH_COM), Toast.LENGTH_LONG).show()
     }
 
-    private fun bmiClassification(bmi: Double): Pair<String, Int> {
+    private fun bmiClassification(bmi: Double): BmiCategories {
 
         return when {
-            bmi < 18.5 -> Pair(getString(R.string.BMI_UNDERWEIGHT),R.color.colorLapisLazuli)
-            bmi in 18.5..25.0 -> Pair(getString(R.string.BMI_NORMAL), R.color.colorVerdigris)
-            bmi in 25.0..30.0 -> Pair(getString(R.string.BMI_OVERWEIGHT), R.color.colorOrange)
-            bmi in 30.0..35.0 -> Pair(getString(R.string.BMI_OBESE1), R.color.colorPink)
-            bmi in 35.0..40.0 -> Pair(getString(R.string.BMI_OBESE2),R.color.colorPompeianPink)
-            else -> Pair(getString(R.string.BMI_OBESE3), R.color.colorClaret)
+            bmi < 18.5 -> BmiCategories.UNDERWEIGHT
+            bmi in 18.5..25.0 -> BmiCategories.NORMAL
+            bmi in 25.0..30.0 -> BmiCategories.OVERWEIGHT
+            bmi in 30.0..35.0 -> BmiCategories.OBESE1
+            bmi in 35.0..40.0 -> BmiCategories.OBESE2
+            else -> BmiCategories.OBESE3
         }
     }
 
