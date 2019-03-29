@@ -74,3 +74,5 @@ A
 settings.gradle,0\5\05efc8b1657769a27696d478ded1e95f38737233
 ]
 -app/src/main/res/layout/activity_info_bmi.xml,2\3\2307e35a2fe953b4c203aa98eab3ce602dfac1ee
+b
+2app/src/main/java/com/example/bmi/BmiCategories.kt,c\e\ce8acb3d2fc43b57e4e7cddea289e14fcc15e7e8

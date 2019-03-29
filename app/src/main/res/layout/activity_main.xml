@@ -129,10 +129,11 @@
             android:layout_height="wrap_content"
             android:id="@+id/bmiDescriptionView"
             app:layout_constraintStart_toStartOf="parent" android:layout_marginTop="@dimen/BMI_MARGIN_TOP"
-            app:layout_constraintTop_toBottomOf="@+id/bmiNumberView" android:layout_marginStart="@dimen/BMI_MARGIN_START"
+            app:layout_constraintTop_toBottomOf="@+id/bmiNumberView"
+            android:layout_marginStart="@dimen/BMI_MARGIN_START"
             android:textSize="26sp" android:layout_marginBottom="@dimen/BMI_MARGIN_BOTTOM"
             app:layout_constraintBottom_toTopOf="@+id/countBmi" app:layout_constraintHorizontal_bias="0.501"
-            app:layout_constraintVertical_bias="0.163"
+            app:layout_constraintVertical_bias="0.100000024"
             android:textAlignment="center"
             android:layout_marginEnd="@dimen/BMI_MARGIN_END"
             app:layout_constraintEnd_toEndOf="parent"/>

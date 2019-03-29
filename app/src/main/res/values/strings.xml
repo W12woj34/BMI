@@ -34,4 +34,10 @@
     <string name="BMI_RESULT_TEXT">result</string>
     <string name="BMI_BUTTON_COUNT">Count</string>
     <string name="BMI_SHOW_INFO_DESC">Bmi show info</string>
+    <string name="BMI_SAMPLE_DATE">12.12.2019</string>
+    <string name="BMI_BMITEXT">BMI</string>
+    <string name="BMI_HISTORY_IMAGE_DESC">Image in BMI history</string>
+    <string name="BMI_HISTORY_SAMPLE_VALUE">9999999.00</string>
+    <string name="BMI_HISTORY_SAMPLE_HEIGHT">height: 999 cm</string>
+    <string name="BMI_HISTORY_SAMPLE_MASS">mass: 999 kg</string>
 </resources>
