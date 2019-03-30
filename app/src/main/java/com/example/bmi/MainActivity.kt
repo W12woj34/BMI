@@ -82,7 +82,6 @@ class MainActivity : AppCompatActivity() {
             heightText.text = savedInstanceState.getString(KEY_BMI_HEIGHT)
             units = savedInstanceState.getBoolean(KEY_BMI_UNITS)
             showInfo.visibility = savedInstanceState.getInt(KEY_BMI_VISIBILITY)
-           // showInfo.setBackgroundColor(savedInstanceState.getInt(KEY_BMI_COLOR))
         }
 
     }
@@ -112,7 +111,6 @@ class MainActivity : AppCompatActivity() {
                     this.bmiNumberView.text = bmiValue
                     this.bmiNumberView.setTextColor(category.getColor(this.resources))
                     this.bmiDescriptionView.text = category.getName(this.resources)
-                    //this.showInfo.setBackgroundColor(bmiNumberView.currentTextColor)
                     this.showInfo.visibility = View.VISIBLE
                     updateHistory(bmiValue, category.getName(this.resources), category.getColor(this.resources))
                 }
@@ -124,9 +122,11 @@ class MainActivity : AppCompatActivity() {
 
     private fun updateHistory(bmiValue: String, category: String, color: Int) {
         val date = Calendar.getInstance().time
-        val dateText = SimpleDateFormat("dd.MM.yyyy", Locale.getDefault()).format(date)
-        val massString = "mass: " + massEdit.text + if(!units){ " kg"} else {" lb"}
-        val heightString = "height: " + heightEdit.text + if(!units){ " cm"} else {" in"}
+        val dateText = SimpleDateFormat(getString(R.string.BMI_DATE_FORMAT), Locale.getDefault()).format(date)
+        val massString = getString(R.string.BMI_MASS_STRING_START) + massEdit.text + if(!units){
+            getString(R.string.BMI_MASS_STRING_END_KG)} else {getString(R.string.BMI_MASS_STRING_END_LB)}
+        val heightString = getString(R.string.BMI_HEIGHT_STRING_START) + heightEdit.text + if(!units){
+            getString(R.string.BMI_HEIGHT_STRING_END_CM)} else {getString(R.string.BMI_HEIGHT_STRING_END_IN)}
         val bmiRecord = BmiRecord(massString, heightString, bmiValue, category, color, dateText)
 
         val records = prefs.getRecordList(KEY_BMI_RESULTS)

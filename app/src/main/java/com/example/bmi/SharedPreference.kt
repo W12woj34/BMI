@@ -7,10 +7,6 @@ import com.google.gson.reflect.TypeToken
 
 class SharedPreference(myContext: Context) {
 
-    companion object {
-      const val KEY_BMI_PREFS = "BMI_PREFS"
-    }
-
     private val pref: SharedPreferences = myContext.getSharedPreferences(KEY_BMI_PREFS, Context.MODE_PRIVATE)
 
     fun save(key: String, list: ArrayList<BmiRecord>) {
@@ -29,4 +25,7 @@ class SharedPreference(myContext: Context) {
         return arrayListOf()
     }
 
+        companion object {
+        const val KEY_BMI_PREFS = "BMI_PREFS"
+    }
 }

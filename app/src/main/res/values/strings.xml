@@ -43,4 +43,11 @@
     <string name="BMI_MENU_HISTORY">History</string>
     <string name="BMI_MENU_ABOUT_ME">About me</string>
     <string name="BMI_MENU_SWITCH">Switch units</string>
+    <string name="BMI_DATE_FORMAT">dd.MM.yyyy</string>
+    <string name="BMI_MASS_STRING_START">mass:</string>
+    <string name="BMI_HEIGHT_STRING_START">height:</string>
+    <string name="BMI_MASS_STRING_END_KG">kg</string>
+    <string name="BMI_MASS_STRING_END_LB">lb</string>
+    <string name="BMI_HEIGHT_STRING_END_CM">cm</string>
+    <string name="BMI_HEIGHT_STRING_END_IN">in</string>
 </resources>
