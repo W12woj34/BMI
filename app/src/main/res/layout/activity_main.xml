@@ -62,7 +62,7 @@
             app:layout_constraintVertical_bias="0.0"
             android:layout_width="0dp"
             android:contentDescription="@string/BMI_MAIN_PIC_DESC" android:layout_height="@dimen/BMI_HEIGHT_MATCH"
-    />
+            android:scaleType="centerCrop"/>
     <android.support.constraint.Guideline
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -121,7 +121,7 @@
             android:layout_marginStart="@dimen/BMI_MARGIN_START"
             android:layout_marginEnd="@dimen/BMI_MARGIN_END"
             android:textSize="42sp"
-            app:layout_constraintHorizontal_bias="0.525"
+            app:layout_constraintHorizontal_bias="0.0"
             android:textAlignment="center"
             app:layout_constraintEnd_toEndOf="parent"/>
     <TextView
@@ -138,18 +138,25 @@
             android:layout_marginEnd="@dimen/BMI_MARGIN_END"
             app:layout_constraintEnd_toEndOf="parent"/>
     <ImageButton
-            app:srcCompat="@drawable/ic_media_play_light"
+            app:srcCompat="@drawable/arrow"
             android:id="@+id/showInfo"
-            android:layout_width="0dp"
+            android:layout_width="@dimen/BMI_WIDTH_MATCH"
             android:layout_marginTop="@dimen/BMI_MARGIN_TOP"
             app:layout_constraintTop_toBottomOf="@+id/textView4"
             android:layout_marginBottom="@dimen/BMI_MARGIN_BOTTOM"
             app:layout_constraintBottom_toTopOf="@+id/bmiDescriptionView"
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginEnd="@dimen/BMI_MARGIN_END"
-            tools:srcCompat="@drawable/ic_media_play_light"
-            app:layout_constraintVertical_bias="1.0"
+            tools:srcCompat="@drawable/arrow"
+            app:layout_constraintVertical_bias="0.0"
             android:visibility="invisible"
             android:contentDescription="@string/BMI_INFO_BUTTON_DESC"
-            android:layout_height="wrap_content"/>
+            android:layout_height="@dimen/BMI_HEIGHT_MATCH" android:scaleType="fitXY"
+            app:layout_constraintStart_toStartOf="@+id/guideline5" app:layout_constraintHorizontal_bias="0.0"
+            android:backgroundTint="@color/colorWhite" android:background="?attr/colorBackgroundFloating"/>
+    <android.support.constraint.Guideline
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" android:id="@+id/guideline5"
+            app:layout_constraintGuide_percent="0.80"/>
 </android.support.constraint.ConstraintLayout>

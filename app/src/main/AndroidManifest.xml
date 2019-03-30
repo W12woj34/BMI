@@ -17,6 +17,10 @@
             android:screenOrientation="portrait"
             android:parentActivityName="com.example.bmi.MainActivity">
         </activity>
+        <activity android:name=".HistoryActivity"
+                  android:screenOrientation="portrait"
+                  android:parentActivityName="com.example.bmi.MainActivity">
+        </activity>
         <activity android:name=".MainActivity"
         android:launchMode="singleTop">
             <intent-filter>

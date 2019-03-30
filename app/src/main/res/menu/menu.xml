@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:tools="http://schemas.android.com/tools"
-      xmlns:app="http://schemas.android.com/apk/res-auto"
+<menu
       xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-            android:title="Switch units"
+            android:title="@string/BMI_MENU_SWITCH"
             android:id="@+id/switchUnits"
     />
     <item
-            android:title="About me"
+            android:title="@string/BMI_MENU_ABOUT_ME"
             android:id="@+id/aboutMe"
     />
+    <item android:title="@string/BMI_MENU_HISTORY"
+          android:id="@+id/history"/>
 </menu>

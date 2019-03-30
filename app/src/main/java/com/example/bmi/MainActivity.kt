@@ -11,13 +11,17 @@ import com.example.bmi.logic.Bmi
 import com.example.bmi.logic.BmiForKgCm
 import com.example.bmi.logic.BmiForLbIn
 import kotlinx.android.synthetic.main.activity_main.*
+import java.text.SimpleDateFormat
+import java.util.*
 
 class MainActivity : AppCompatActivity() {
     private var units = false
+    private lateinit var prefs: SharedPreference
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        prefs = SharedPreference(this)
 
         countBmi.setOnClickListener {
             countBmiButton()
@@ -37,15 +41,22 @@ class MainActivity : AppCompatActivity() {
 
         val id = item!!.itemId
 
+        if(id == R.id.switchUnits){
+            switchUnits()
+            return true
+        }
+
         if(id == R.id.aboutMe){
             startActivity(Intent(this, AboutMeActivity::class.java))
             return true
         }
 
-        if(id == R.id.switchUnits){
-            switchUnits()
+        if(id == R.id.history){
+            startActivity(Intent(this, HistoryActivity::class.java))
             return true
         }
+
+
 
         return super.onOptionsItemSelected(item)
     }
@@ -96,16 +107,36 @@ class MainActivity : AppCompatActivity() {
                 bmi.getMass() !in bmi.getMassRange() -> showMassError()
                 bmi.getHeight() !in bmi.getHeightRange() -> showHeightError()
                 else -> {
-                    this.bmiNumberView.text = ((bmi.countBmi()*100).toInt()/100.0).toString()
+                    val bmiValue = ((bmi.countBmi()*100).toInt()/100.0).toString()
                     val category = bmiClassification(bmi.countBmi())
+                    this.bmiNumberView.text = bmiValue
                     this.bmiNumberView.setTextColor(category.getColor(this.resources))
                     this.bmiDescriptionView.text = category.getName(this.resources)
                     //this.showInfo.setBackgroundColor(bmiNumberView.currentTextColor)
                     this.showInfo.visibility = View.VISIBLE
+                    updateHistory(bmiValue, category.getName(this.resources), category.getColor(this.resources))
                 }
             }
 
 
+        }
+    }
+
+    private fun updateHistory(bmiValue: String, category: String, color: Int) {
+        val date = Calendar.getInstance().time
+        val dateText = SimpleDateFormat("dd.MM.yyyy", Locale.getDefault()).format(date)
+        val massString = "mass: " + massEdit.text + if(!units){ " kg"} else {" lb"}
+        val heightString = "height: " + heightEdit.text + if(!units){ " cm"} else {" in"}
+        val bmiRecord = BmiRecord(massString, heightString, bmiValue, category, color, dateText)
+
+        val records = prefs.getRecordList(KEY_BMI_RESULTS)
+        if (records.size < 10) {
+            records.add(bmiRecord)
+            prefs.save(KEY_BMI_RESULTS, records)
+        } else {
+            records.removeAt(0)
+            records.add(bmiRecord)
+            prefs.save(KEY_BMI_RESULTS, records)
         }
     }
 
@@ -186,5 +217,6 @@ class MainActivity : AppCompatActivity() {
         const val KEY_BMI_UNITS = "BMI_UNITS"
         const val KEY_BMI_MASS = "BMI_MASS"
         const val KEY_BMI_HEIGHT = "BMI_HEIGHT"
+        const val KEY_BMI_RESULTS = "BMI_RESULTS"
     }
 }

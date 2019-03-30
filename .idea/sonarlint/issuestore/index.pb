@@ -76,3 +76,17 @@ A
 -app/src/main/res/layout/activity_info_bmi.xml,2\3\2307e35a2fe953b4c203aa98eab3ce602dfac1ee
 b
 2app/src/main/java/com/example/bmi/BmiCategories.kt,c\e\ce8acb3d2fc43b57e4e7cddea289e14fcc15e7e8
+\
+,app/src/main/res/layout/activity_history.xml,f\5\f56e2717b8fd5ac152413108f0ea114b3e2d6abd
+Z
+*app/src/main/res/layout/history_record.xml,5\0\5071a5b111e99963cde60ee33922cb31825670db
+e
+5app/src/main/java/com/example/bmi/SharedPreference.kt,8\d\8d5e86beae93bddcb5a996c9b1df7ba0adc9860a
+e
+5app/src/main/java/com/example/bmi/ResultAdapterAlt.kt,c\4\c43caf2e73d06775bc8e0715c88ee3e108905e0f
+b
+2app/src/main/java/com/example/bmi/ResultAdapter.kt,d\0\d0de660d012855cbcaf397d8a476c597a4f50b71
+^
+.app/src/main/java/com/example/bmi/BmiRecord.kt,9\1\91cf76931cccf2fbbab1bc3936e36dac4a7b87e0
+d
+4app/src/main/java/com/example/bmi/HistoryActivity.kt,1\0\10780559b808780ddeeb2ec85c32ef02c326d1db

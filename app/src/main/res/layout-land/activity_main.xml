@@ -59,7 +59,7 @@
             app:layout_constraintBottom_toTopOf="@+id/guideline"
             app:layout_constraintVertical_bias="1.0"
             android:layout_width="0dp" android:contentDescription="@string/BMI_INFO_PIC"
-            app:layout_constraintHorizontal_bias="1.0"/>
+            app:layout_constraintHorizontal_bias="1.0" android:scaleType="centerCrop"/>
     <android.support.constraint.Guideline
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -141,18 +141,29 @@
             android:id="@+id/guideline2"
             app:layout_constraintGuide_percent="0.5"/>
     <ImageButton
-            android:layout_width="wrap_content"
-            android:layout_height="0dp"
-            app:srcCompat="@drawable/ic_media_play_light"
+            android:layout_width="@dimen/BMI_HEIGHT_MATCH"
+            android:layout_height="@dimen/BMI_HEIGHT_MATCH"
+            app:srcCompat="@drawable/arrow"
             android:id="@+id/showInfo"
             android:layout_marginTop="@dimen/BMI_MARGIN_TOP"
             app:layout_constraintTop_toBottomOf="@+id/textView4"
             android:layout_marginBottom="@dimen/BMI_MARGIN_BOTTOM"
             app:layout_constraintBottom_toTopOf="@+id/bmiDescriptionView"
-            tools:srcCompat="@drawable/ic_media_play_light"
+            tools:srcCompat="@drawable/arrow"
             app:layout_constraintVertical_bias="1.0"
             android:visibility="invisible"
             android:contentDescription="@string/BMI_SHOW_INFO_DESC"
-            android:cropToPadding="false" android:duplicateParentState="false"
-            app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="@dimen/BMI_MARGIN_END"/>
+            android:cropToPadding="false"
+            android:duplicateParentState="false"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="@dimen/BMI_MARGIN_END"
+            android:backgroundTint="?attr/colorBackgroundFloating"
+            android:scaleType="fitXY"
+            app:layout_constraintStart_toStartOf="@+id/guideline6" android:background="?attr/colorBackgroundFloating"/>
+    <android.support.constraint.Guideline
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/guideline6"
+            app:layout_constraintGuide_percent="0.88"/>
 </android.support.constraint.ConstraintLayout>

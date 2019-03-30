@@ -5,9 +5,9 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@dimen/BMI_HISTORY_BORDERS">
+        android:id="@+id/history_row">
 
-    <androidx.constraintlayout.widget.Guideline
+    <android.support.constraint.Guideline
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/guideline3"
@@ -28,7 +28,7 @@
             android:layout_marginTop="@dimen/BMI_MARGIN_TOP"
             android:layout_marginBottom="@dimen/BMI_MARGIN_BOTTOM"
             tools:text="@string/BMI_HISTORY_SAMPLE_MASS"
-            android:textSize="15sp"
+            android:textSize="14sp"
             android:textAlignment="textStart"/>
     <TextView
             android:layout_width="@dimen/BMI_WIDTH_MATCH"
@@ -45,7 +45,7 @@
             android:layout_marginBottom="@dimen/BMI_MARGIN_BOTTOM"
             app:layout_constraintHorizontal_bias="0.0"
             tools:text="@string/BMI_HISTORY_SAMPLE_HEIGHT"
-            android:textSize="15sp"
+            android:textSize="14sp"
             android:textAlignment="textStart"/>
     <android.support.constraint.Guideline
             android:orientation="vertical"
@@ -57,18 +57,17 @@
             android:layout_width="@dimen/BMI_WIDTH_MATCH"
             android:layout_height="wrap_content"
             app:layout_constraintBottom_toBottomOf="parent"
-            android:id="@+id/historyBmiValue"
+            android:id="@+id/historyBmiCategory"
             app:layout_constraintEnd_toStartOf="@+id/guideline4"
             android:layout_marginEnd="@dimen/BMI_MARGIN_END"
             app:layout_constraintStart_toStartOf="@+id/guideline3"
             android:layout_marginStart="@dimen/BMI_MARGIN_START"
-            android:textSize="23sp"
-            tools:text="@string/BMI_HISTORY_SAMPLE_VALUE"
+            android:textSize="20sp"
             app:layout_constraintHorizontal_bias="0.0"
             android:layout_marginTop="@dimen/BMI_MARGIN_TOP"
             app:layout_constraintTop_toBottomOf="@+id/historyBmi"
             android:textAlignment="center"
-            android:layout_marginBottom="@dimen/BMI_MARGIN_BOTTOM"/>
+            android:layout_marginBottom="@dimen/BMI_MARGIN_BOTTOM" tools:text="@string/BMI__HISTORY_CATEGORY"/>
     <TextView
             android:layout_width="@dimen/BMI_WIDTH_MATCH"
             android:layout_height="wrap_content"
@@ -79,9 +78,9 @@
             android:layout_marginStart="@dimen/BMI_MARGIN_START"
             android:layout_marginEnd="@dimen/BMI_MARGIN_END"
             app:layout_constraintEnd_toStartOf="@+id/guideline4"
-            tools:text="@string/BMI_BMITEXT"
-            android:textSize="20sp"
-            android:textAlignment="center" android:text="@string/BMI_BMITEXT"/>
+            tools:text="@string/BMI_HISTORY_SAMPLE_VALUE"
+            android:textSize="23sp"
+            android:textAlignment="center"/>
     <TextView
             android:layout_width="@dimen/BMI_WIDTH_MATCH"
             android:layout_height="wrap_content"
@@ -101,7 +100,7 @@
     <ImageView
             android:layout_width="@dimen/BMI_HISTORY_IMAGE_RES"
             android:layout_height="@dimen/BMI_HISTORY_IMAGE_RES"
-            tools:srcCompat="@tools:sample/avatars[2]"
+            tools:srcCompat="@drawable/bmihistory"
             android:id="@+id/historyImage"
             app:layout_constraintStart_toStartOf="@+id/guideline4"
             android:layout_marginStart="@dimen/BMI_MARGIN_START"
@@ -112,6 +111,20 @@
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginEnd="@dimen/BMI_MARGIN_END"
             app:layout_constraintVertical_bias="0.0"
-            android:contentDescription="@string/BMI_HISTORY_IMAGE_DESC"/>
+            android:contentDescription="@string/BMI_HISTORY_IMAGE_DESC" app:srcCompat="@drawable/bmihistory"
+            android:scaleType="centerInside"/>
+    <View
+            android:id="@+id/divider"
+            android:layout_height="@dimen/BMI_DIVIDER_HEIGHT"
+            android:background="@color/colorBlack"
+            android:visibility="visible"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="@dimen/BMI_DIVIDER_MARGIN"
+            android:layout_width="@dimen/BMI_WIDTH_MATCH"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="@dimen/BMI_DIVIDER_MARGIN"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:backgroundTint="@color/colorBlack"
+            app:layout_constraintTop_toBottomOf="@+id/historyBmiCategory"/>
 
 </android.support.constraint.ConstraintLayout>
