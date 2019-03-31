@@ -32,6 +32,14 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    override fun onPrepareOptionsMenu(menu: Menu?): Boolean {
+        val records = prefs.getRecordList(KEY_BMI_RESULTS)
+        if (records.isEmpty()) {
+            menu!!.getItem(2).isEnabled = false
+        }
+        return super.onPrepareOptionsMenu(menu)
+    }
+
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.menu, menu)
         return true
@@ -52,12 +60,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         if (id == R.id.history) {
-            val records = prefs.getRecordList(KEY_BMI_RESULTS)
-            if (records.isEmpty()) {
-                Toast.makeText(this, getString(R.string.BMI_HISTORY_EMPTY), Toast.LENGTH_LONG).show()
-            } else {
                 startActivity(Intent(this, HistoryActivity::class.java))
-            }
             return true
         }
 
@@ -118,6 +121,7 @@ class MainActivity : AppCompatActivity() {
                     this.bmiDescriptionView.text = category.getName(this.resources)
                     this.showInfo.visibility = View.VISIBLE
                     updateHistory(bmiValue, category.getName(this.resources), category.getColor(this.resources))
+                    invalidateOptionsMenu()
                 }
             }
 
