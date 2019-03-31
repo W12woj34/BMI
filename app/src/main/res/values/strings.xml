@@ -50,4 +50,5 @@
     <string name="BMI_MASS_STRING_END_LB">lb</string>
     <string name="BMI_HEIGHT_STRING_END_CM">cm</string>
     <string name="BMI_HEIGHT_STRING_END_IN">in</string>
+    <string name="BMI_HISTORY_EMPTY">History is empty!</string>
 </resources>

@@ -41,18 +41,23 @@ class MainActivity : AppCompatActivity() {
 
         val id = item!!.itemId
 
-        if(id == R.id.switchUnits){
+        if (id == R.id.switchUnits) {
             switchUnits()
             return true
         }
 
-        if(id == R.id.aboutMe){
+        if (id == R.id.aboutMe) {
             startActivity(Intent(this, AboutMeActivity::class.java))
             return true
         }
 
-        if(id == R.id.history){
-            startActivity(Intent(this, HistoryActivity::class.java))
+        if (id == R.id.history) {
+            val records = prefs.getRecordList(KEY_BMI_RESULTS)
+            if (records.isEmpty()) {
+                Toast.makeText(this, getString(R.string.BMI_HISTORY_EMPTY), Toast.LENGTH_LONG).show()
+            } else {
+                startActivity(Intent(this, HistoryActivity::class.java))
+            }
             return true
         }
 
@@ -74,7 +79,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onRestoreInstanceState(savedInstanceState: Bundle?) {
         super.onRestoreInstanceState(savedInstanceState)
-        if(savedInstanceState != null){
+        if (savedInstanceState != null) {
             bmiNumberView.text = savedInstanceState.getString(KEY_BMI_VALUE)
             bmiNumberView.setTextColor(savedInstanceState.getInt(KEY_BMI_COLOR))
             bmiDescriptionView.text = savedInstanceState.getString(KEY_BMI_DESCRIPTION)
@@ -86,15 +91,15 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    private fun countBmiButton(){
+    private fun countBmiButton() {
 
-        if(!checkIfEmpty()){
-            val bmi : Bmi
+        if (!checkIfEmpty()) {
+            val bmi: Bmi
             val mass = massEdit.text.toString().toInt()
             val height = heightEdit.text.toString().toInt()
-            if(!units){
+            if (!units) {
                 bmi = BmiForKgCm(mass, height)
-            }else{
+            } else {
                 bmi = BmiForLbIn(mass, height)
             }
 
@@ -106,7 +111,7 @@ class MainActivity : AppCompatActivity() {
                 bmi.getMass() !in bmi.getMassRange() -> showMassError()
                 bmi.getHeight() !in bmi.getHeightRange() -> showHeightError()
                 else -> {
-                    val bmiValue = ((bmi.countBmi()*100).toInt()/100.0).toString()
+                    val bmiValue = ((bmi.countBmi() * 100).toInt() / 100.0).toString()
                     val category = bmiClassification(bmi.countBmi())
                     this.bmiNumberView.text = bmiValue
                     this.bmiNumberView.setTextColor(category.getColor(this.resources))
@@ -123,10 +128,16 @@ class MainActivity : AppCompatActivity() {
     private fun updateHistory(bmiValue: String, category: String, color: Int) {
         val date = Calendar.getInstance().time
         val dateText = SimpleDateFormat(getString(R.string.BMI_DATE_FORMAT), Locale.getDefault()).format(date)
-        val massString = getString(R.string.BMI_MASS_STRING_START) + massEdit.text + if(!units){
-            getString(R.string.BMI_MASS_STRING_END_KG)} else {getString(R.string.BMI_MASS_STRING_END_LB)}
-        val heightString = getString(R.string.BMI_HEIGHT_STRING_START) + heightEdit.text + if(!units){
-            getString(R.string.BMI_HEIGHT_STRING_END_CM)} else {getString(R.string.BMI_HEIGHT_STRING_END_IN)}
+        val massString = getString(R.string.BMI_MASS_STRING_START) + massEdit.text + if (!units) {
+            getString(R.string.BMI_MASS_STRING_END_KG)
+        } else {
+            getString(R.string.BMI_MASS_STRING_END_LB)
+        }
+        val heightString = getString(R.string.BMI_HEIGHT_STRING_START) + heightEdit.text + if (!units) {
+            getString(R.string.BMI_HEIGHT_STRING_END_CM)
+        } else {
+            getString(R.string.BMI_HEIGHT_STRING_END_IN)
+        }
         val bmiRecord = BmiRecord(massString, heightString, bmiValue, category, color, dateText)
 
         val records = prefs.getRecordList(KEY_BMI_RESULTS)
@@ -140,22 +151,22 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun showMassError(){
+    private fun showMassError() {
         massEdit.error = getString(R.string.BMI_MASS_ERROR)
     }
 
-    private fun showHeightError(){
+    private fun showHeightError() {
         heightEdit.error = getString(R.string.BMI_HEIGHT_ERROR)
     }
 
-    private fun checkIfEmpty(): Boolean{
+    private fun checkIfEmpty(): Boolean {
         var error = false
-        if(massEdit.text.isEmpty()){
+        if (massEdit.text.isEmpty()) {
             showMassError()
             error = true
         }
 
-        if(heightEdit.text.isEmpty()){
+        if (heightEdit.text.isEmpty()) {
             showHeightError()
             error = true
         }
@@ -163,18 +174,21 @@ class MainActivity : AppCompatActivity() {
         return error
     }
 
-    private fun showInfoButton(){
-        if(bmiNumberView.text != getString(R.string.BMI_BLANK)){
+    private fun showInfoButton() {
+        if (bmiNumberView.text != getString(R.string.BMI_BLANK)) {
             val dataIntent = Intent(this, InfoBmiActivity::class.java)
             dataIntent.putExtra(KEY_BMI_VALUE, bmiNumberView.text.toString())
             dataIntent.putExtra(KEY_BMI_NAME, bmiDescriptionView.text.toString())
             dataIntent.putExtra(KEY_BMI_COLOR, bmiNumberView.currentTextColor)
-            dataIntent.putExtra(KEY_BMI_DESCRIPTION, bmiClassification(bmiNumberView.text.toString().toDouble()).getDescription(this.resources))
+            dataIntent.putExtra(
+                KEY_BMI_DESCRIPTION,
+                bmiClassification(bmiNumberView.text.toString().toDouble()).getDescription(this.resources)
+            )
             startActivity(dataIntent)
         }
     }
 
-    private fun switchUnits(){
+    private fun switchUnits() {
         units = !units
 
         when {
@@ -192,7 +206,7 @@ class MainActivity : AppCompatActivity() {
         massEdit.text = null
         heightEdit.text = null
         showInfo.visibility = View.INVISIBLE
-        Toast.makeText(this,getString(R.string.BMI_SWITCH_COM), Toast.LENGTH_LONG).show()
+        Toast.makeText(this, getString(R.string.BMI_SWITCH_COM), Toast.LENGTH_LONG).show()
     }
 
     private fun bmiClassification(bmi: Double): BmiCategories {
