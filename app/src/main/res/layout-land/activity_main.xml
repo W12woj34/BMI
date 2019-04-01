@@ -157,9 +157,9 @@
             android:duplicateParentState="false"
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginEnd="@dimen/BMI_MARGIN_END"
-            android:backgroundTint="?attr/colorBackgroundFloating"
+            android:backgroundTint="@android:color/transparent"
             android:scaleType="fitXY"
-            app:layout_constraintStart_toStartOf="@+id/guideline6" android:background="?attr/colorBackgroundFloating"/>
+            app:layout_constraintStart_toStartOf="@+id/guideline6" android:background="@android:color/transparent"/>
     <android.support.constraint.Guideline
             android:orientation="vertical"
             android:layout_width="wrap_content"
